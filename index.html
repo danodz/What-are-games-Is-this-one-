@@ -1,0 +1,78 @@
+<html>
+    <body>
+        <div class="text">
+        </div>
+        <div class="game">
+            <div class="gameItem win">
+                <div class="btn winBtn"></div>
+                <div class="itemTxt">Win</div>
+                <div class="count winCount">0</div>
+            </div>
+            <div class="gameItem lose">
+                <div class="btn loseBtn"></div>
+                <div class="itemTxt">Lose</div>
+                <div class="count loseCount">0</div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        var texts = ["text1", "text2", "text3"];
+        var currentText = -1;
+        nextText();
+
+        var winBtn = document.querySelector(".winBtn");
+        var loseBtn = document.querySelector(".loseBtn");
+        var winCount = 0;
+        var loseCount = 0;
+
+        winBtn.onclick = function(){
+            winCount += 1;
+            document.querySelector(".winCount").innerHTML = winCount;
+            nextText();
+        }
+
+        loseBtn.onclick = function(){
+            loseCount += 1;
+            document.querySelector(".loseCount").innerHTML = loseCount;
+            nextText();
+        }
+
+        function nextText()
+        {
+            if(currentText < texts.length - 1)
+            {
+                currentText += 1;
+                document.querySelector(".text").innerHTML = texts[currentText];
+            }
+        }
+
+    </script>
+    
+    <style>
+        .game{
+            text-align: center;
+        }
+
+        .gameItem{
+            display: inline-block;
+        }
+        .lose{
+            margin-left: 100px;
+        }
+
+        .winBtn{
+            width: 0; 
+            height: 0; 
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid blue;
+        }
+        
+        .loseBtn{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</html>
