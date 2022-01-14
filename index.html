@@ -3,22 +3,26 @@
         <div class="text">
         </div>
         <div class="game">
-            <div class="gameItem win">
-                <div class="btn winBtn"></div>
-                <div class="itemTxt">Win</div>
-                <div class="count winCount">0</div>
+            <div class="inlineBlock winBtn"></div><div class="inlineBlock loseBtn"></div>
+            <div class="winScore">
+                <div class="itemTxt inlineBlock">Win: </div>
+                <div class="count winCount inlineBlock">0</div>
             </div>
-            <div class="gameItem lose">
-                <div class="btn loseBtn"></div>
-                <div class="itemTxt">Lose</div>
-                <div class="count loseCount">0</div>
+            <div class="loseScore">
+                <div class="itemTxt inlineBlock">Lose: </div>
+                <div class="count loseCount inlineBlock">0</div>
             </div>
         </div>
     </body>
 
     <script>
-        var texts = ["text1", "text2", "text3"];
-        var currentText = -1;
+        var texts = ["Press the blue triangle to win"];
+
+        if(localStorage.getItem("currentText"))
+            var currentText = parseInt(localStorage.getItem('currentText')) - 1;
+        else
+            var currentText = -1
+
         nextText();
 
         var winBtn = document.querySelector(".winBtn");
@@ -44,21 +48,25 @@
             {
                 currentText += 1;
                 document.querySelector(".text").innerHTML = texts[currentText];
+                localStorage.setItem('currentText', currentText);
             }
         }
 
     </script>
     
     <style>
-        .game{
+        .text{
             text-align: center;
+            font-size: 40px;
         }
 
-        .gameItem{
-            display: inline-block;
+        .game{
+            text-align: center;
+            font-size: 30px;
         }
-        .lose{
-            margin-left: 100px;
+
+        .inlineBlock{
+            display: inline-block;
         }
 
         .winBtn{
@@ -73,6 +81,11 @@
             width: 200px;
             height: 200px;
             background-color: red;
+            margin-left: 100px;
+        }
+        
+        .winScore{
+            margin-top: 50px;
         }
     </style>
 </html>
